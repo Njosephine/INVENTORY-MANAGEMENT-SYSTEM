@@ -9,7 +9,7 @@ a {
     box-sizing: border-box;
 }
 
-/* Body Styling */
+
 body {
     font-family: Arial, sans-serif;
     background-image: url('back.jpg');
@@ -197,4 +197,11 @@ body {
 
 .back-to-login:hover {
     text-decoration: underline;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 5px;
+    display: block;
 }

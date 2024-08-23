@@ -6,6 +6,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var usernameExists = false;
+
+            // Check if username exists when focus leaves the input
+            $("#username").on("blur", function () {
+                var username = $(this).val();
+
+                $.ajax({
+                    url: "login.php",
+                    type: "POST",
+                    data: { check_username: true, username: username },
+                    dataType: "json",
+                    success: function (response) {
+                        if (response.exists) {
+                            usernameExists = true;
+                            $("#username-error").text("");
+                        } else {
+                            usernameExists = false;
+                            $("#username-error").text("Username doesn't exist.");
+                        }
+                    },
+                    error: function () {
+                        $("#username-error").text("Error checking username.");
+                    }
+                });
+            });
+
+            // Handle form submission
+            $("form").on("submit", function (event) {
+                event.preventDefault(); // Prevent default form submission
+
+                if (!usernameExists) {
+                    $("#username-error").text("Please enter a valid username.");
+                    return;
+                }
+
+                var username = $("#username").val();
+                var password = $("#password").val();
+
+                $.ajax({
+                    url: "login.php",
+                    type: "POST",
+                    data: {
+                        login: true,
+                        username: username,
+                        password: password
+                    },
+                    dataType: "json",
+                    success: function (response) {
+                        if (response.success) {
+                            window.location.href = "dashboard.php"; // Redirect on successful login
+                        } else {
+                            $("#password-error").text("Invalid password.");
+                        }
+                    },
+                    error: function () {
+                        $("#password-error").text("Error logging in.");
+                    }
+                });
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -14,20 +78,20 @@
             <h2>INVENTORY TRACKING SYSTEM</h2>
         </div>
         <div class="login-container">
-            <form action="" method="post">
+            <form action="login.php" method="post">
                 <label for="username">USERNAME</label>
                 <input type="text" id="username" name="username" required>
+                <span id="username-error" style="color: red; font-size: 0.9em; margin-top: 5px; display: block;"></span>
 
                 <label for="password">PASSWORD</label>
                 <input type="password" id="password" name="password" required>
+                <span id="password-error" style="color: red; font-size: 0.9em; margin-top: 5px; display: block;"></span>
 
                 <button type="submit">LOGIN</button>
                 <p class="reset-message">Forgot Password?<a href="forgot_password.html"
-                        class="forgot_password-link">Reset here<a></p>
-
-                <!--<a href="forgot_password.html" class="forgot-password">Forgot Password?</a>-->
+                        class="forgot_password-link">Reset here</a></p>
                 <p class="register-message">Don't have an account? <a href="register.html"
-                        class="register-link">Register<a></p>
+                        class="register-link">Register</a></p>
             </form>
         </div>
     </div>
