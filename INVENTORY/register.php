@@ -1,5 +1,5 @@
 <?php
-//Displays errors to help in debugging
+// Displays errors to help in debugging
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -18,6 +18,12 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+// Start session
+session_start();
+
+// Debugging: Output session data to check if the error message is set
+var_dump($_SESSION);
+
 // Check if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $first_name = $_POST['first_name'];
@@ -33,19 +39,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->store_result();
 
     if ($stmt->num_rows > 0) {
-        echo "Username already exists.";
+        // Set the error message in session
+        $_SESSION['error'] = "Username already exists.";
+        // Redirect to the registration page
+        header("Location: registers.php");
+        exit();
     } else {
-        
         // Hash the password
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
         // Prepare and execute the insert query
         $stmt = $conn->prepare("INSERT INTO USERS (firstname,lastname,email,username, password) VALUES (?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssss", $first_name,$last_name, $email,$username, $hashedPassword);
+        $stmt->bind_param("sssss", $first_name, $last_name, $email, $username, $hashedPassword);
 
         if ($stmt->execute()) {
-            echo "Registration successful.";
+           // Set the success message in session
+           $_SESSION['success'] = "Registration successful! Please log in.";
+           // Redirect to the login page
+           header("Location: login_page.php");
+           exit();
         } else {
+            // Handle error if insert fails
             echo "Error: " . $stmt->error;
         }
     }
@@ -57,5 +71,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // Close the connection
 $conn->close();
 ?>
+
 
 

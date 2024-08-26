@@ -1,18 +1,29 @@
+<?php
+session_start();
+$firstname = htmlspecialchars($_SESSION['firstname']);
+$lastname = htmlspecialchars($_SESSION['lastname']);
+
+// Check if the user is logged in by checking if 'user_id' session variable is set
+if (!isset($_SESSION['user_id'])) {
+    // If not, redirect to login page
+    header("Location: login");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <head>
-        <title>Dashboard Inventory Management System</title>
-        <link rel="stylesheet" type="text/css" href="css/styles.css?v=1.0">
-        <script src="https://kit.fontawesome.com/a906cfb875.js" crossorigin="anonymous"></script>
-    </head>
+    <title>Dashboard Inventory Management System</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css?v=1.0">
+    <script src="https://kit.fontawesome.com/a906cfb875.js" crossorigin="anonymous"></script>
+</head>
 <body>
     <div id="dashboardMainContainer">
         <div class="dashboard_sidebar" id="dashboard_sidebar">
             <h3 class="dashboard_logo" id="dashboard_logo">IMS</h3>
             <div class="dashboard_sidebar_user">
                 <img src="manager.jpg" alt="User image" id="userImage" />
-                <span> Manager </span>
+                <span><?= $firstname . ' ' . $lastname ?></span>
             </div>
             <div class="dashboard_sidebar_menus">
                 <ul class="dashboard_menu_lists">
@@ -25,7 +36,6 @@
                             <li><a href="#">Report 2</a></li>
                         </ul>
                     </li>
-
 
                     <!-- Updated "Product" menu item with dropdown -->
                     <li class="menuDropdown"><a href="#"><i class="fa fa-tags menuIcons"></i> Product <i class="fa fa-chevron-down dropdown-icon"></i></a>
@@ -58,13 +68,12 @@
                             <li><a href="#">Add User</a></li>
                         </ul>
                     </li>
-                    
                 </ul>
             </div>
         </div>
         <div class="dashboard_content_container" id="dashboard_content_container">
             <div class="dashboard_topNav">
-                <a href="" id="toggleBtn"><i class="fa fa-navicon"></i></a>
+                <a href="#" id="toggleBtn"><i class="fa fa-navicon"></i></a>
                 <a href="Index.php" id="logoutBtn"><i class="fa fa-power-off"></i> LogOut</a>
             </div>
             <div class="dashboard_content">
@@ -88,7 +97,7 @@
                 userImage.style.width = '60px';
 
                 let menuIcons = document.getElementsByClassName('menuIcons');
-                for (var i = 0; i < menuIcons.length; i++) {
+                for (let i = 0; i < menuIcons.length; i++) {
                     menuIcons[i].style.display = 'none';
                 }
                 sideBarIsOpen = false;
@@ -99,7 +108,7 @@
                 userImage.style.width = '80px';
 
                 let menuIcons = document.getElementsByClassName('menuIcons');
-                for (var i = 0; i < menuIcons.length; i++) {
+                for (let i = 0; i < menuIcons.length; i++) {
                     menuIcons[i].style.display = 'inline-block';
                 }
                 sideBarIsOpen = true;

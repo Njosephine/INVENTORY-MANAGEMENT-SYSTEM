@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function () {
@@ -73,6 +74,14 @@
                 });
             });
         });
+
+        function togglePasswordVisibility(inputId) {
+            const input = document.getElementById(inputId);
+            const type = input.type === 'password' ? 'text' : 'password';
+            input.type = type;
+        }
+
+        window.togglePasswordVisibility = togglePasswordVisibility;
     </script>
 </head>
 
@@ -81,6 +90,7 @@
         <div class="header-container">
             <h2>INVENTORY TRACKING SYSTEM</h2>
         </div>
+
         <div class="login-container">
             <form action="login.php" method="post">
                 <label for="username">USERNAME</label>
@@ -88,15 +98,24 @@
                 <span id="username-error" style="color: red; font-size: 0.9em; margin-top: 5px; display: block;"></span>
 
                 <label for="password">PASSWORD</label>
-                <input type="password" id="password" name="password" required>
-                <span id="password-error" style="color: red; font-size: 0.9em; margin-top: 5px; display: block;"></span>
+             
+                    <input type="password" id="password" name="password" required>
+                    <i class="fas fa-eye eye-icon" onclick="togglePasswordVisibility('password')"></i>
+                    <span id="password-error" style="color: red; font-size: 0.9em; margin-top: 5px; display: block;"></span>
+            
 
-                <a href="Dashboard.php"><button type="submit">LOGIN</button></a>
-                <p class="reset-message">Forgot Password?<a href="forgot_password.html"
-                        class="forgot_password-link">Reset here</a></p>
-                <p class="register-message">Don't have an account? <a href="register.html"
-                        class="register-link">Register</a></p>
+                <button type="submit">LOGIN</button>
+                <p class="reset-message">Forgot Password?<a href="forgot_password.php" class="forgot_password-link">Reset here</a></p>
+                <p class="register-message">Don't have an account? <a href="registers.php" class="register-link">Register</a></p>
             </form>
+
+            <?php
+            session_start();
+            if (isset($_SESSION['success'])) {
+                echo "<span style='color: red;'>" . $_SESSION['success'] . "</span>";
+                unset($_SESSION['success']); // Clear the success message after displaying it
+            }
+            ?>
         </div>
     </div>
 </body>

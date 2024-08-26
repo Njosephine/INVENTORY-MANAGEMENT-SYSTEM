@@ -35,7 +35,6 @@ if (isset($_POST['check_username'])) {
     } else {
         echo json_encode(['exists' => false]);
     }
-
     $stmt->close();
     exit();
 }
@@ -46,10 +45,10 @@ if (isset($_POST['login']) && $_POST['login']) {
     $password = $_POST['password'];
 
     // Prepare and bind
-    $stmt = $conn->prepare("SELECT id, password FROM USERS WHERE username = ?");
+    $stmt = $conn->prepare("SELECT id, firstname, lastname, password FROM USERS WHERE username = ?");
     $stmt->bind_param("s", $username);
     $stmt->execute();
-    $stmt->bind_result($id, $hashedPassword);
+    $stmt->bind_result($id, $firstname, $lastname,$hashedPassword);
 
     // Fetch the result
     if ($stmt->fetch()) {
@@ -57,6 +56,8 @@ if (isset($_POST['login']) && $_POST['login']) {
         if (password_verify($password, $hashedPassword)) {
             // Password is correct
             $_SESSION['user_id'] = $id;
+            $_SESSION['firstname'] = $firstname;
+            $_SESSION['lastname'] = $lastname;
             echo json_encode(['success' => true]);
         } else {
             // Password is incorrect

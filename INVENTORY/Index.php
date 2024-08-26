@@ -13,7 +13,7 @@
             <h1>IMS</h1>
             <h2>INVENTORY MANAGEMENT SYSTEM</h2>
             <p>Track your goods throughout your entire supply chain, from purchasing to production to end sales</p>
-            <a href="login.html">
+            <a href="login_page.php">
                 <button class="login-button">Login</button>
             </a>
             
