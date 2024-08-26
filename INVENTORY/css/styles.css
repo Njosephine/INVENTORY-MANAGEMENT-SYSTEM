@@ -1,0 +1,443 @@
+#dashboardMainContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+div.dashboard_sidebar {
+    width: 20%;
+    background: #323232;
+    min-height: 100vh;
+}
+div.dashboard_content_container {
+    width: 80%;
+    background-color: #fbfbfd;
+}
+
+h3.dashboard_logo {
+    color: #f685a1;
+    font-size: 80px;
+    text-align: center;
+    height: auto;
+    padding: 0; 
+    margin: 0; 
+}
+
+
+div.dashboard_sidebar_user {
+    text-align: center;
+    position: relative;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #FFF;
+}
+
+div.dashboard_sidebar_user img {
+    width: 80px;
+    display: block; /* Change to block to take full width and push the span below */
+    border-radius: 50%;
+    border: 2px solid #f685a1;
+    margin: 0 auto 10px auto; /* Center the image and add margin below */
+}
+
+div.dashboard_sidebar_user span {
+    display: block; /* Change to block to ensure it's on a new line */
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+
+ul.dashboard_menu_lists {
+    padding: 10px;
+    margin-top: 20px;
+}
+
+ul.dashboard_menu_lists li {
+    padding: 15px 15px;
+    
+    text-transform: uppercase;
+}
+
+ul.dashboard_menu_lists li a {
+    text-decoration: none;
+    color: white;
+    display: black  ;
+    font-size: 20px;
+}
+
+ul.dashboard_menu_lists li a i {
+    font-size: 18px;
+}
+
+ul.dashboard_menu_lists li.menuActive{
+    background-color: #f685a1;
+    color: white;
+  
+}
+
+ul.dashboard_menu_lists li:hover{
+    background-color: #f685a1;
+    color: white;
+    transition: 0.3s all;
+}
+
+div.dashboard_topNav{
+    background: white;
+    padding: 20px;
+
+}
+
+div.dashboard-topNav a{
+    color: #848383;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+#logoutBtn{
+    float: right;
+    text-decoration: none;
+}
+
+div.dashboard_content{
+    padding: 50px 10px 10px 10px;
+}
+
+div.dashboard_content_main{
+    background-color: white;
+    min-height: 800px;
+    height: 100%;
+}
+
+
+/* CSS for the homepage */
+
+
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+
+header {
+    background-image: url('https://cdn.pixabay.com/photo/2019/12/04/10/22/shoes-4672332_1280.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 75vh;
+    color: #fff;
+    text-align: center;
+    position: relative;
+}
+
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+h1 {
+    font-size: 145px;
+    font-weight: bold;
+    margin: 0;
+    color: #fd7c9c;
+}
+
+h2 {
+    font-size: 40px;
+    font-weight: normal;
+    margin: 10px 0;
+    color: #f3eaed;
+    background-color: rgb(59, 56, 56);
+    
+}
+
+p {
+    font-size: 17px;
+    margin: 10px 0;
+    color: seashell;
+}
+
+.login-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: rgb(237, 54, 85);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.notification-section {
+    display: flex;
+    justify-content: space-around;
+    padding: 40px 10px;
+    background-color: #2e2d2d;
+}
+
+.notify-content {
+    max-width: 500px;
+}
+
+h3 {
+    font-size: 24px;
+    color: #fd7c9c;
+    font-weight: bold;
+}
+
+.notify-form {
+    margin-top: 20px;
+}
+
+.notify-form input[type="email"] {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: calc(100% - 110px);
+    margin-right: 10px;
+}
+
+.notify-form button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: rgb(237, 54, 85);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.video-content img {
+    max-width: 180px;
+    border-radius: 5px;
+}
+
+.main-footer {
+    background-color: #d4d1d1;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.social-media p {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.social-icons a {
+    margin: 0 10px;
+    font-size: 24px;
+    color: #555;
+    text-decoration: none;
+    
+}
+
+.social-icons a:hover {
+    color: red;
+}
+
+.footer-links {
+    margin-top: 50px;
+    
+}
+
+.footer-links a {
+    margin: 0 10px;
+    font-size: 14px;
+    color: #555;
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    color:red;
+}
+
+
+/* CSS for the dropdown */
+/* Base styles */
+.menuDropdown {
+    position: relative;
+}
+
+.menuDropdown > a {
+    display: block;
+    padding: 15px;
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+/* Remove hover background color */
+.menuDropdown > a:hover {
+    background-color: red;
+}
+
+
+/* Background color only when menu item is active (clicked) */
+.menuDropdown.open > a {
+    background-color: #f685a1;
+}
+
+/* Dropdown icon transition */
+.menuDropdown .dropdown-icon {
+    float: right;
+    transition: transform 0.3s ease;
+}
+
+/* Submenu hidden by default */
+.submenu {
+    display: none;
+    list-style-type: none;
+    padding-left: 20px;
+    margin-top: 5px;
+}
+
+/* Submenu items */
+.submenu li {
+    margin: 5px 0;
+    background-color: #848383;
+}
+.submenu li a:hover {
+    color:red; /* Optional: To make the text color white when hovered */
+    transition: background-color 0.3s ease;
+}
+
+/* Show submenu and rotate icon when the dropdown is open */
+.menuDropdown.open .submenu {
+    display: block;
+}
+
+.menuDropdown.open .dropdown-icon {
+    transform: rotate(180deg);
+}
+
+/* Main Dashboard Layout */
+#dashboardMainContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+div.dashboard_sidebar {
+    width: 20%;
+    background: #323232;
+    min-height: 100vh;
+}
+
+div.dashboard_content_container {
+    width: 80%;
+    background-color: #fbfbfd;
+}
+
+/* Logo Styling */
+h3.dashboard_logo {
+    color: #f685a1;
+    font-size: 80px;
+    text-align: center;
+    padding: 0; 
+    margin: 0; 
+}
+
+/* User Info Sidebar Styling */
+div.dashboard_sidebar_user {
+    text-align: center;
+    position: relative;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #FFF;
+}
+
+div.dashboard_sidebar_user img {
+    width: 80px;
+    display: block;
+    border-radius: 50%;
+    border: 2px solid #f685a1;
+    margin: 0 auto 10px auto;
+}
+
+div.dashboard_sidebar_user span {
+    display: block;
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+/* Sidebar Menu Styling */
+ul.dashboard_menu_lists {
+    padding: 10px;
+    margin-top: 20px;
+}
+
+ul.dashboard_menu_lists li {
+    padding: 15px 15px;
+    text-transform: uppercase;
+}
+
+ul.dashboard_menu_lists li a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    font-size: 20px;
+}
+
+ul.dashboard_menu_lists li a i {
+    font-size: 18px;
+}
+
+ul.dashboard_menu_lists li.menuActive {
+    background-color: #f685a1;
+    color: white;
+}
+
+ul.dashboard_menu_lists li:hover {
+    background-color: #f685a1;
+    color: white;
+    transition: 0.3s all;
+}
+
+/* Top Navigation Styling */
+div.dashboard_topNav {
+    background: white;
+    padding: 20px;
+}
+
+div.dashboard_topNav a {
+    color: #848383;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+#logoutBtn {
+    float: right;
+    text-decoration: none;
+}
+
+/* Content Area Styling */
+div.dashboard_content {
+    padding: 50px 10px 10px 10px;
+}
+
+div.dashboard_content_main {
+    background-color: white;
+    min-height: 800px;
+    height: 100%;
+}
+
+/* Add Product Form Styling */
+.add-product-form-container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.add-product-form-container h2 {
+    color: #f685a1;
+    font-size: 28px;}

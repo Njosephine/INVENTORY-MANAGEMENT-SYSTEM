@@ -40,8 +40,8 @@ if (isset($_POST['check_username'])) {
     exit();
 }
 
-// Check if form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+// Handle form submission
+if (isset($_POST['login']) && $_POST['login']) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
@@ -57,17 +57,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($password, $hashedPassword)) {
             // Password is correct
             $_SESSION['user_id'] = $id;
-            header("Location: dashboard.php"); // Redirect to a dashboard page
-            exit();
+            echo json_encode(['success' => true]);
         } else {
-            echo "<p style='color:red;'>Invalid password.</p>";
+            // Password is incorrect
+            echo json_encode(['success' => false, 'error' => 'password']);
         }
     } else {
-        echo "<p style='color:red;'>Invalid username.</p>";
+        // Username not found
+        echo json_encode(['success' => false, 'error' => 'username']);
     }
 
     // Close the statement
     $stmt->close();
+    exit();
 }
 
 // Close the connection

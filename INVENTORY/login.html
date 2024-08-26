@@ -58,9 +58,13 @@
                     dataType: "json",
                     success: function (response) {
                         if (response.success) {
-                            window.location.href = "dashboard.php"; // Redirect on successful login
+                            window.location.href = "Dashboard.php"; // Redirect on successful login
                         } else {
-                            $("#password-error").text("Invalid password.");
+                            if (response.error === 'username') {
+                                $("#username-error").text("Invalid username.");
+                            } else if (response.error === 'password') {
+                                $("#password-error").text("Invalid password.");
+                            }
                         }
                     },
                     error: function () {
@@ -87,7 +91,7 @@
                 <input type="password" id="password" name="password" required>
                 <span id="password-error" style="color: red; font-size: 0.9em; margin-top: 5px; display: block;"></span>
 
-                <button type="submit">LOGIN</button>
+                <a href="Dashboard.php"><button type="submit">LOGIN</button></a>
                 <p class="reset-message">Forgot Password?<a href="forgot_password.html"
                         class="forgot_password-link">Reset here</a></p>
                 <p class="register-message">Don't have an account? <a href="register.html"
